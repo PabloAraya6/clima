@@ -26,9 +26,13 @@ class Busquedas {
             });
     
             const resp = await instance.get();
-            console.log(resp.data.features);
-
-            return []; //cidudades que coincida con este lugar 
+            
+            return resp.data.features.map( lugar => ({
+                id : lugar.id,
+                nombre : lugar.place_name,
+                long: lugar.center[0],
+                lat: lugar.center[1],
+            }))
             
         } catch (error) {
             console.log(error.response);
