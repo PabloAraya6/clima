@@ -11,7 +11,7 @@ class Busquedas {
 
     get paramsMapbox() {
         return {
-            'access_token' : 'pk.eyJ1IjoicGFibG9zcXVpIiwiYSI6ImNrbXA5aDZtODBld20ydnQ3Y3RrdTQ1dDgifQ.itj-oNq-8bt9DOaWmL2jNg',
+            'access_token' : process.env.MAPBOX_KEY,
             'limit' : 5,
             'language' : 'es'
         }
@@ -26,7 +26,7 @@ class Busquedas {
             });
     
             const resp = await instance.get();
-            console.log(resp.data);
+            console.log(resp.data.features);
 
             return []; //cidudades que coincida con este lugar 
             
