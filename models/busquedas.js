@@ -58,11 +58,12 @@ class Busquedas {
                 params: {lat, lon, ... this.paramsOpenWeather},
             });
             const resp = await instance1.get();
+            const {weather, main} = resp.data
             return {
-                desc: resp.data.weather[0].description,
-                min: resp.data.main.temp_min,
-                max: resp.data.main.temp_max,
-                temp: resp.data.main.temp,
+                desc: weather[0].description,
+                min: main.temp_min,
+                max: main.temp_max,
+                temp: main.temp,
             };
 
         } catch (error) {

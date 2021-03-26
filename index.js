@@ -29,10 +29,10 @@ const main = async() => {
                 const clima = await busqueda.clima(lugarSel.lat, lugarSel.long);
                 //mostrar resultado
                 console.log('\n Informacion de la ciudad \n'.green);
-                console.log('Cidudad: ',lugarSel.nombre);
+                console.log('Cidudad: ',lugarSel.nombre.green);
                 console.log('Latitud: ',lugarSel.lat);
                 console.log('Longitud: ',lugarSel.long);
-                console.log('Descripcion: ', clima.desc);
+                console.log('Descripcion: ', clima.desc.green);
                 console.log('Temperatura: ', clima.temp);
                 console.log('Maxima: ', clima.max);
                 console.log('Minima: ', clima.min);
