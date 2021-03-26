@@ -1,10 +1,12 @@
+const fs = require('fs');
 const { default: axios } = require("axios");
 
 
 class Busquedas {
 
-    historial = ['Tegucigalpa', 'Buenos Aires', 'Madrid']
-
+    // historial = ['Tegucigalpa', 'Buenos Aires', 'Madrid'];
+    historial = [];
+    dbPath = './db/database.json';
     constructor() {
         //TODO leer base de datos
     }
@@ -70,6 +72,36 @@ class Busquedas {
             console.log(error.response);
             return [];
         }
+
+    }
+
+    agregarHistorial ( lugar = '') {
+        //prevent duplicate
+        if( this.historial.includes(lugar.toLocaleLowerCase()) ){
+            return;
+        } 
+
+        this.historial.unshift(lugar.toLocaleLowerCase());
+        this.guardarDB();
+
+    }
+
+    guardarDB() {
+
+        const payload = {
+            historial : this.historial
+        };
+
+        fs.writeFileSync(this.dbPath, JSON.stringify(payload), function (err){
+            if (err) throw err;
+            console.log("It's saved!");
+        });
+
+    }
+
+    leerDB() {
+
+
 
     }
 
